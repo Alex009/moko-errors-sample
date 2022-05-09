@@ -29,7 +29,8 @@ class LoginViewModel(
                     if (throwable is IncorrectPasswordException) ToastErrorPresenter()
                     else AlertErrorPresenter()
                 }
-            )
+            ),
+            onCatch = { println("some error processed $it") }
         )
     )
 
