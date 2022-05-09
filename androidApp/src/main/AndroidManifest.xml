@@ -3,6 +3,7 @@
     package="ru.alex009.moko.errors.myapplication.android">
 
     <application
+        android:name=".MyApplication"
         android:allowBackup="false"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
