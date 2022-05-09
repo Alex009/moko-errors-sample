@@ -3,6 +3,8 @@ package ru.alex009.moko.errors.myapplication
 import dev.icerock.moko.errors.handler.ExceptionHandler
 import dev.icerock.moko.errors.mappers.mapThrowable
 import dev.icerock.moko.errors.presenters.AlertErrorPresenter
+import dev.icerock.moko.errors.presenters.SelectorErrorPresenter
+import dev.icerock.moko.errors.presenters.ToastErrorPresenter
 import dev.icerock.moko.mvvm.dispatcher.EventsDispatcher
 import dev.icerock.moko.mvvm.livedata.MutableLiveData
 import dev.icerock.moko.mvvm.viewmodel.ViewModel
@@ -22,7 +24,12 @@ class LoginViewModel(
         eventsDispatcher = eventsDispatcher,
         exceptionHandler = ExceptionHandler(
             exceptionMapper = { it.mapThrowable() },
-            errorPresenter = AlertErrorPresenter()
+            errorPresenter = SelectorErrorPresenter(
+                errorPresenterSelector = { throwable ->
+                    if (throwable is IncorrectPasswordException) ToastErrorPresenter()
+                    else AlertErrorPresenter()
+                }
+            )
         )
     )
 
