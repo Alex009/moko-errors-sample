@@ -46,6 +46,11 @@ class LoginViewModel(
                         message = MR.strings.login_success.desc()
                     )
                 }
+            }.catch<NoNetworkException> { exc ->
+                println("i see $exc")
+                false
+            }.finally {
+                println("final")
             }.execute()
         }
     }
