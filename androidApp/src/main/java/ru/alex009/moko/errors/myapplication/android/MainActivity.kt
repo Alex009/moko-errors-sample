@@ -27,6 +27,10 @@ class MainActivity : AppCompatActivity(), LoginViewModel.EventsListener {
         binding.loginBtn.setOnClickListener { viewModel.onLoginPressed() }
 
         viewModel.eventsDispatcher.bind(this, this)
+        viewModel.exceptionHandler.bind(
+            lifecycleOwner = this,
+            activity = this
+        )
     }
 
     override fun showAlert(title: StringDesc?, message: StringDesc) {

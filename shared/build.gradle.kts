@@ -38,7 +38,7 @@ kotlin {
                 api("dev.icerock.moko:mvvm-livedata:0.13.0")
                 api("dev.icerock.moko:mvvm-livedata-resources:0.13.0")
                 api("dev.icerock.moko:resources:0.19.1")
-                implementation("dev.icerock.moko:errors:0.6.0")
+                api("dev.icerock.moko:errors:0.6.0")
             }
         }
         val commonTest by getting {

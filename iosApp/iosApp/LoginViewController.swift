@@ -21,6 +21,7 @@ class LoginViewController: UIViewController {
         viewModel = LoginViewModel(
             eventsDispatcher: EventsDispatcher(listener: self)
         )
+        viewModel.exceptionHandler.bind(viewController: self)
         
         loginField.bindTextTwoWay(liveData: viewModel.login)
         passwordField.bindTextTwoWay(liveData: viewModel.password)
