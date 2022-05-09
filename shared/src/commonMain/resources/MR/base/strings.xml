@@ -3,6 +3,8 @@
     <string name="login_success">Login success</string>
     <string name="login_already_used">Login already used</string>
     <string name="incorrect_password">Incorrect password</string>
+    <string name="network_error">Network error</string>
+    <string name="common_error">Error</string>
     <string name="no_internet">No internet connection</string>
     <string name="unknown_error">Unknown error (%s)</string>
 </resources>

@@ -29,8 +29,9 @@ class MainActivity : AppCompatActivity(), LoginViewModel.EventsListener {
         viewModel.eventsDispatcher.bind(this, this)
     }
 
-    override fun showAlert(message: StringDesc) {
+    override fun showAlert(title: StringDesc?, message: StringDesc) {
         AlertDialog.Builder(this)
+            .setTitle(title?.toString(this))
             .setMessage(message.toString(this))
             .setPositiveButton(android.R.string.ok) { _, _ -> }
             .show()

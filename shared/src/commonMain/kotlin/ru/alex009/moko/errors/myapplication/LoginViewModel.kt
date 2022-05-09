@@ -17,10 +17,20 @@ class LoginViewModel(
     fun onLoginPressed() {
         try {
             authorize(login = login.value, password = password.value)
-            eventsDispatcher.dispatchEvent { showAlert(MR.strings.login_success.desc()) }
+            eventsDispatcher.dispatchEvent {
+                showAlert(
+                    title = null,
+                    message = MR.strings.login_success.desc()
+                )
+            }
         } catch (exc: Throwable) {
-            val message: StringDesc = exc.mapThrowable()
-            eventsDispatcher.dispatchEvent { showAlert(message) }
+            val texts: AlertTexts = exc.mapThrowable()
+            eventsDispatcher.dispatchEvent {
+                showAlert(
+                    title = texts.title,
+                    message = texts.message
+                )
+            }
         }
     }
 
@@ -36,10 +46,6 @@ class LoginViewModel(
     }
 
     interface EventsListener {
-        fun showAlert(message: StringDesc)
+        fun showAlert(title: StringDesc?, message: StringDesc)
     }
 }
-
-class LoginUsedException : IllegalArgumentException("login already used")
-class IncorrectPasswordException : IllegalArgumentException("incorrect password")
-class NoNetworkException : IllegalStateException("no internet connection")

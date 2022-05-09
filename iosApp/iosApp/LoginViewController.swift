@@ -32,9 +32,9 @@ class LoginViewController: UIViewController {
 }
 
 extension LoginViewController: LoginViewModelEventsListener {
-    func showAlert(message: StringDesc) {
+    func showAlert(title: StringDesc?, message: StringDesc) {
         let alert = UIAlertController(
-            title: nil,
+            title: title?.localized(),
             message: message.localized(),
             preferredStyle: .alert
         )
