@@ -1,6 +1,7 @@
 package ru.alex009.moko.errors.myapplication
 
 import dev.icerock.moko.errors.handler.ExceptionHandler
+import dev.icerock.moko.errors.mappers.ExceptionMappersStorage
 import dev.icerock.moko.errors.mappers.mapThrowable
 import dev.icerock.moko.errors.presenters.AlertErrorPresenter
 import dev.icerock.moko.errors.presenters.SelectorErrorPresenter
@@ -23,7 +24,7 @@ class LoginViewModel(
     ) : this(
         eventsDispatcher = eventsDispatcher,
         exceptionHandler = ExceptionHandler(
-            exceptionMapper = { it.mapThrowable() },
+            exceptionMapper = ExceptionMappersStorage.throwableMapper(),
             errorPresenter = SelectorErrorPresenter(
                 errorPresenterSelector = { throwable ->
                     if (throwable is IncorrectPasswordException) ToastErrorPresenter()
